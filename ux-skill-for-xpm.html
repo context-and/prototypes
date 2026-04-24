@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UX Skill for xPM: Demo</title>
+  <style>
+    :root {
+      --brand: #9B38C8;
+      --brand-light: #F2E0FE;
+      --brand-dark: #7C2EAA;
+      --fluent-blue: #0078D4;
+      --fluent-blue-light: #EFF6FC;
+      --fluent-blue-border: #A8D4F0;
+      --neutral-05: #FAFAFA;
+      --neutral-10: #F5F5F5;
+      --neutral-20: #EBEBEB;
+      --neutral-30: #D6D6D6;
+      --neutral-50: #ABABAB;
+      --neutral-60: #8A8A8A;
+      --neutral-80: #4F4F4F;
+      --neutral-90: #3B3B3B;
+      --neutral-100: #1A1A1A;
+      --red: #C50F1F;
+      --red-light: #FDF3F4;
+      --red-border: #F1B9BC;
+      --orange: #B95000;
+      --orange-light: #FFF4E5;
+      --green: #0E7A0D;
+      --green-light: #DFF6DD;
+      --surface: #ffffff;
+      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --radius: 4px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--neutral-10);
+      color: var(--neutral-100);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--neutral-20);
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .page-header-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--brand);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      flex-shrink: 0;
+    }
+
+    .page-header h1 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .page-header p {
+      font-size: 12px;
+      color: var(--neutral-60);
+      margin-top: 1px;
+    }
+
+    /* ── Layout ── */
+    .container {
+      margin: 0 auto;
+      padding: 36px 148px 64px;
+    }
+
+    @media (max-width: 900px) {
+      .container { padding: 24px 20px 48px; }
+    }
+
+    /* ── Eyebrow ── */
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--neutral-60);
+      margin-bottom: 14px;
+    }
+
+    /* ── About card ── */
+    .about-card {
+      background: var(--surface);
+      border: 1px solid var(--neutral-20);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 32px 36px;
+      margin-bottom: 16px;
+    }
+
+    .about-card h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .about-top {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 900px) {
+      .about-top { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    .about-desc {
+      color: var(--neutral-80);
+      font-size: 14px;
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 900px) {
+      .feature-grid { grid-template-columns: 1fr 1fr; margin-bottom: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+
+    .about-bottom {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 24px;
+      border-top: 1px solid var(--neutral-20);
+      padding-top: 24px;
+      margin-top: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .about-bottom { grid-template-columns: 1fr; }
+    }
+
+    .feature-item {
+      border: 1px solid var(--neutral-20);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      background: var(--neutral-05);
+    }
+
+    .feature-item strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .feature-item span {
+      font-size: 12px;
+      color: var(--neutral-60);
+      line-height: 1.55;
+    }
+
+    .tips-box {
+      background: var(--brand-light);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+    }
+
+    .tips-box h4 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brand);
+      margin-bottom: 12px;
+    }
+
+    .tips-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .tips-box li {
+      font-size: 13px;
+      color: var(--neutral-80);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .tips-box li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--brand);
+    }
+
+    /* ── Install section ── */
+    .install-section {
+    }
+
+    .install-section h4 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .install-prereq {
+      margin: 10px 0 14px 18px;
+      font-size: 13px;
+      color: var(--neutral-80);
+    }
+    .install-prereq a { color: var(--brand); text-decoration: none; }
+    .install-prereq a:hover { text-decoration: underline; }
+
+    .install-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .install-card {
+      border: 1px solid var(--neutral-20);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+    }
+
+    .install-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .install-card-title svg {
+      color: var(--neutral-60);
+      flex-shrink: 0;
+    }
+
+    .install-card ol {
+      padding-left: 18px;
+      font-size: 12px;
+      color: var(--neutral-80);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .install-card code {
+      font-family: 'Consolas', 'Cascadia Code', monospace;
+      font-size: 11px;
+      background: var(--neutral-10);
+      border: 1px solid var(--neutral-20);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: var(--neutral-90);
+    }
+
+    /* ── Divider ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--neutral-20);
+      margin: 52px 0;
+    }
+
+    /* ── Example header ── */
+    .example-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .example-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .example-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .output-block--wide { grid-column: 2 / 4; }
+
+    /* ── Example three-column layout ── */
+    .example-columns {
+      display: grid;
+      grid-template-columns: 1fr minmax(845px, 1.5fr) 845px;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 16px;
+    }
+
+    .example-columns > * { min-width: 0; }
+
+    /* Col 2 minimum = col 3 width (845px). Below the viewport where both fit, stack vertically. */
+    @media (max-width: 2580px) {
+      .example-columns {
+        grid-template-columns: 1fr;
+      }
+      .example-columns > * {
+        grid-column: auto;
+      }
+      .screenshot-frame {
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    /* ── Mockup empty state ── */
+    .mockup-empty {
+      background: var(--neutral-10);
+      border: 1px dashed var(--neutral-30);
+      border-radius: var(--radius);
+      padding: 32px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+      color: var(--neutral-50);
+      min-height: 160px;
+    }
+
+    .mockup-empty p {
+      font-size: 12px;
+      line-height: 1.5;
+      max-width: 200px;
+    }
+
+    /* ── Prompt block ── */
+    .prompt-block {
+      background: var(--surface);
+      border: 1px solid var(--neutral-20);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .prompt-body {
+      padding: 16px 18px;
+    }
+
+    .prompt-block-text {
+      font-size: 13px;
+      color: var(--neutral-80);
+      font-style: italic;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    /* ── Screenshot frame ── */
+    .screenshot-frame {
+      border: 1px solid var(--neutral-20);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--neutral-10);
+    }
+
+    .screenshot-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .screenshot-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 32px 24px;
+      color: var(--neutral-50);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .screenshot-placeholder svg {
+      color: var(--neutral-30);
+    }
+
+    .screenshot-placeholder code {
+      font-family: 'Consolas', monospace;
+      font-size: 11px;
+      background: var(--surface);
+      border: 1px solid var(--neutral-20);
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: var(--neutral-80);
+    }
+
+    /* ── Output block ── */
+    .output-block {
+      background: var(--surface);
+      border: 1px solid var(--neutral-20);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .output-header {
+      background: var(--brand);
+      color: white;
+      padding: 10px 18px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .output-body {
+      padding: 24px 28px;
+    }
+
+    /* ── Strategy box ── */
+    .strategy-box {
+      background: var(--brand-light);
+      border-left: 3px solid var(--brand);
+      padding: 16px 20px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-bottom: 24px;
+    }
+
+    .strategy-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--brand);
+      margin-bottom: 12px;
+    }
+
+    .strategy-dl {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .strategy-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .strategy-row dt {
+      font-weight: 600;
+      color: var(--neutral-60);
+    }
+
+    .strategy-row dd {
+      color: var(--neutral-90);
+      line-height: 1.55;
+    }
+
+    /* ── Audit findings ── */
+    .finding-group {
+      margin-bottom: 22px;
+    }
+
+    .finding-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 3px;
+      margin-bottom: 12px;
+    }
+
+    .finding-badge.critical  { background: var(--red-light); color: var(--red); }
+    .finding-badge.workflow  { background: var(--orange-light); color: var(--orange); }
+    .finding-badge.important { background: var(--brand-light); color: var(--brand-dark); }
+    .finding-badge.polish    { background: var(--neutral-10); color: var(--neutral-60); }
+    .finding-badge.positive  { background: var(--green-light); color: var(--green); }
+
+    .finding-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .finding-item {
+      font-size: 13px;
+      line-height: 1.6;
+      padding-left: 18px;
+      position: relative;
+      color: var(--neutral-80);
+    }
+
+    .finding-item::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--neutral-50);
+    }
+
+    .h-tag {
+      display: inline;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--neutral-100);
+    }
+
+    .h-tag-wrap {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .fix-label {
+      font-weight: 700;
+      color: var(--neutral-100);
+    }
+
+    /* ── Copy output ── */
+    .copy-prose {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--neutral-90);
+    }
+
+    .copy-prose h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--neutral-100);
+      margin: 18px 0 6px;
+    }
+
+    .copy-prose h4:first-child { margin-top: 0; }
+
+    .copy-prose p { margin-bottom: 10px; }
+
+    .copy-prose ol {
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    .copy-prose ol li { margin-bottom: 5px; }
+
+    .copy-prose .note-box {
+      background: var(--orange-light);
+      border-left: 3px solid #F7630C;
+      padding: 10px 16px;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 12px;
+      color: var(--neutral-90);
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .copy-prose .note-box svg { flex-shrink: 0; margin-top: 1px; }
+
+    .copy-prose .quote-box {
+      background: var(--neutral-05);
+      border: 1px solid var(--neutral-20);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      font-size: 13px;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--neutral-100);
+      margin: 12px 0;
+    }
+
+    .copy-prose .quote-box strong {
+      font-style: normal;
+    }
+
+    /* ── Mockup outer ── */
+    .mockup-outer {
+      background: var(--surface);
+      border: 1px solid var(--neutral-20);
+      border-radius: var(--radius);
+      overflow: hidden;
+      container-type: inline-size;
+      container-name: mockup;
+    }
+
+    .mockup-outer *::-webkit-scrollbar { display: none; }
+    .mockup-outer * { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .mockup-body {
+      background: var(--neutral-10);
+      padding: 24px;
+    }
+
+    .f-modal, .f-chrome { max-width: 100%; }
+    .f-tabs { overflow-x: auto; }
+
+    /* Scale down mockup content if column is too narrow to fit naturally */
+    @container mockup (max-width: 520px) {
+      .f-modal, .f-chrome { zoom: 0.82; }
+    }
+    @container mockup (max-width: 420px) {
+      .f-modal, .f-chrome { zoom: 0.68; }
+    }
+
+    /* ── Fluent modal mockup ── */
+    .f-modal {
+      background: var(--surface);
+      border-radius: 6px;
+      box-shadow: var(--shadow-lg);
+      max-width: 780px;
+      margin: 0 auto;
+      overflow: hidden;
+      font-size: 13px;
+    }
+
+    .f-modal-titlebar {
+      padding: 22px 24px 0;
+    }
+
+    .f-modal-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--neutral-100);
+    }
+
+    .f-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--neutral-20);
+      padding: 0 24px;
+      margin-top: 16px;
+      gap: 2px;
+      overflow-x: auto;
+    }
+
+    .f-tab {
+      padding: 8px 14px;
+      font-size: 13px;
+      color: var(--neutral-60);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      white-space: nowrap;
+      cursor: default;
+      flex-shrink: 0;
+    }
+
+    .f-tab.active {
+      color: var(--fluent-blue);
+      border-bottom-color: var(--fluent-blue);
+      font-weight: 600;
+    }
+
+    .f-modal-body {
+      padding: 22px 24px;
+    }
+
+    .f-info-banner {
+      background: var(--fluent-blue-light);
+      border: 1px solid var(--fluent-blue-border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--neutral-90);
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.55;
+    }
+
+    .f-info-banner svg { flex-shrink: 0; margin-top: 1px; color: var(--fluent-blue); }
+
+    .f-btn-primary {
+      background: var(--fluent-blue);
+      color: white;
+      border: none;
+      padding: 6px 16px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-family: var(--font);
+      cursor: default;
+      margin-bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .f-table {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .f-table th {
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--neutral-60);
+      border-bottom: 1px solid var(--neutral-20);
+    }
+
+    .f-table td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--neutral-10);
+      color: var(--neutral-80);
+      vertical-align: middle;
+    }
+
+    .f-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .f-badge.yes { background: var(--green-light); color: var(--green); }
+    .f-badge.no  { background: var(--neutral-10); color: var(--neutral-60); }
+
+    .f-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--neutral-60);
+      margin: 18px 0 10px;
+    }
+
+    .f-table-note {
+      font-size: 11px;
+      color: var(--neutral-60);
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+
+    .f-icon-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--neutral-60);
+    }
+
+    .f-icon-action svg:hover { color: var(--neutral-100); }
+
+    .f-modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--neutral-20);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .f-btn {
+      padding: 6px 18px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-family: var(--font);
+      cursor: default;
+    }
+
+    .f-btn.primary {
+      background: var(--fluent-blue);
+      color: white;
+      border: 1px solid var(--fluent-blue);
+    }
+
+    .f-btn.secondary {
+      background: var(--surface);
+      color: var(--neutral-80);
+      border: 1px solid var(--neutral-30);
+    }
+
+    /* ── Error mockup ── */
+    .f-error-bar {
+      background: var(--red-light);
+      border: 1px solid var(--red-border);
+      border-left: 4px solid var(--red);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .f-error-bar svg { color: var(--red); flex-shrink: 0; margin-top: 1px; }
+
+    .f-error-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--red);
+      margin-bottom: 4px;
+    }
+
+    .f-error-body {
+      font-size: 13px;
+      color: var(--neutral-90);
+      line-height: 1.5;
+    }
+
+    .f-error-cta {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--fluent-blue);
+      margin-top: 8px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .f-error-dismiss {
+      margin-left: auto;
+      color: var(--neutral-60);
+      cursor: default;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .f-chrome {
+      background: var(--surface);
+      border-radius: 6px;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .f-chrome-bar {
+      background: var(--neutral-05);
+      border-bottom: 1px solid var(--neutral-20);
+      padding: 8px 14px;
+      font-size: 11px;
+      color: var(--neutral-60);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .f-chrome-body { padding: 18px 20px; }
+
+    .timeline-header-row {
+      display: grid;
+      grid-template-columns: 200px 88px 88px 56px 1fr;
+      background: var(--neutral-10);
+      border: 1px solid var(--neutral-20);
+      border-bottom: none;
+      border-radius: var(--radius) var(--radius) 0 0;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--neutral-60);
+    }
+
+    .timeline-header-row > div { padding: 7px 10px; }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 200px 88px 88px 56px 1fr;
+      border: 1px solid var(--neutral-20);
+      border-top: none;
+      font-size: 12px;
+      color: var(--neutral-80);
+      background: var(--surface);
+    }
+
+    .timeline-row:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+    .timeline-row > div { padding: 8px 10px; }
+
+    .tl-bar {
+      height: 16px;
+      border-radius: 3px;
+      background: var(--fluent-blue);
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+
+    .f-chrome-note {
+      font-size: 11px;
+      color: var(--neutral-60);
+      margin-top: 8px;
+    }
+
+    /* ── CTA section ── */
+    .cta-card {
+      background: var(--surface);
+      border: 1px solid var(--neutral-20);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 28px 32px;
+      margin-top: 0;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .cta-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--brand-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+
+    .cta-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .cta-card p {
+      font-size: 13px;
+      color: var(--neutral-80);
+      line-height: 1.6;
+    }
+
+    .cta-card a {
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .cta-card a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- ── Page header ── -->
+
+<div class="container">
+
+  <!-- ════════════════════════════
+       ABOUT SECTION
+  ════════════════════════════ -->
+  <div class="eyebrow">About this skill</div>
+  <div class="about-card">
+    <div class="about-top">
+      <div>
+        <h2>UX Skill for xPM</h2>
+        <p class="about-desc">A custom skill for AI agents and coding assistants that provides specialized knowledge on best practice patterns for enterprise UX for Projectum xPM. Instead of explaining the domain every time, the skill loads automatically and acts as a UX sparring partner.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <strong>Design review and UX audit</strong>
+          <span>Share a screenshot, describe a screen, paste a link, or activate during coding. The skill identifies usability issues, references UX heuristics, and suggests specific fixes.</span>
+        </div>
+        <div class="feature-item">
+          <strong>UX strategy and design sparring</strong>
+          <span>Describe what you're building and who it's for. Get a framed UX strategy — persona, outcome, platform constraints, and biggest risk — before any specifics. It pushes back on designs that harm efficiency or trust.</span>
+        </div>
+        <div class="feature-item">
+          <strong>UX copywriting</strong>
+          <span>Get help writing clear, user-centered copy for error messages, configuration labels, help text, tooltips, and empty states — following the three C's: clarity, concision, and appropriate tone.</span>
+        </div>
+        <div class="feature-item">
+          <strong>Refining functionality</strong>
+          <span>Describe a problem or capability and the skill iteratively works you through a feature description with user stories and acceptance criteria to refine user-centered functionality.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-bottom">
+    <div>
+      <h4 style="font-size:13px;font-weight:700;margin-bottom:16px;">Tips for getting good results</h4>
+      <div class="tips-box">
+      <ul>
+        <li>Give it something to react to: a screenshot, a description, a draft, or an error message.</li>
+        <li>Tell it which persona you're designing for. "Review this for a resource manager in X organization with X context" gets a better answer than "review this screen."</li>
+        <li>For user stories, expect a clarifying question before you get a draft — this is intentional.</li>
+        <li>For copywriting, include full context: what the field is for, who sees it, what they need to do.</li>
+      </ul>
+      </div>
+    </div>
+
+    <div class="install-section">
+      <h4>How to install</h4>
+      <div class="install-grid">
+
+        <div class="install-card">
+          <div class="install-card-title">
+            <!-- Fluent: WindowDevTools icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.25 3A3.25 3.25 0 0 0 3 6.25v11.5A3.25 3.25 0 0 0 6.25 21h11.5A3.25 3.25 0 0 0 21 17.75V6.25A3.25 3.25 0 0 0 17.75 3H6.25zm0 1.5h11.5c.966 0 1.75.784 1.75 1.75v1H4.5v-1c0-.966.784-1.75 1.75-1.75zM4.5 9.5h15v8.25a1.75 1.75 0 0 1-1.75 1.75H6.25A1.75 1.75 0 0 1 4.5 17.75V9.5zm3.22 2.72a.75.75 0 0 0 0 1.06l1.72 1.72-1.72 1.72a.75.75 0 1 0 1.06 1.06l2.25-2.25a.75.75 0 0 0 0-1.06L8.78 12.22a.75.75 0 0 0-1.06 0zm5.53 3.53a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3z" fill="currentColor"/>
+            </svg>
+            Claude Code
+          </div>
+          <ol>
+            <li>Download the zip file from <a href="https://contextand.sharepoint.com/sites/ContextxPM/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x0120008063E30B164D45478D23AEA53D0A57AC&id=%2Fsites%2FContextxPM%2FShared%20Documents%2FGeneral%2FCustomized%20Agents%2FxPM%20UX%20Agent%20and%20Skill" target="_blank" rel="noopener">this link</a>.</li>
+            <li>Unzip the folder <code>enterprise-ux.zip</code> into <code>~/.claude/skills/</code>. This creates an <code>enterprise-ux/</code> folder with <code>SKILL.md</code> and a <code>references/</code> subfolder.</li>
+            <li>Restart Claude Code — the skill will appear in your skill list automatically.</li>
+            <li>It activates when you work on xPM UX, or type <code>/enterprise-ux</code> to invoke it directly.</li>
+          </ol>
+        </div>
+
+        <div class="install-card">
+          <div class="install-card-title">
+            <!-- Fluent: Code icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.47 6.47a.75.75 0 0 1 1.06 1.06L6.06 12l4.47 4.47a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5zm5.06 0a.75.75 0 0 1 1.06 0l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06L18.94 12l-4.41-4.47a.75.75 0 0 1 0-1.06z" fill="currentColor"/>
+            </svg>
+            GitHub Copilot
+          </div>
+          <ol>
+            <li>Download the zip file from <a href="https://contextand.sharepoint.com/sites/ContextxPM/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x0120008063E30B164D45478D23AEA53D0A57AC&id=%2Fsites%2FContextxPM%2FShared%20Documents%2FGeneral%2FCustomized%20Agents%2FxPM%20UX%20Agent%20and%20Skill" target="_blank" rel="noopener">this link</a>.</li>
+            <li>Unzip the folder <code>enterprise-ux.zip</code> and extract the contents.</li>
+            <li>Paste the contents of <code>SKILL.md</code> and the four files in <code>references/</code> into <code>.github/copilot-instructions.md</code> in your repository.</li>
+            <li>Alternatively, add the same content under VS Code Settings › GitHub Copilot › Custom Instructions.</li>
+            <li>Copilot will apply the xPM UX domain knowledge across all chat conversations in that repo.</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+    </div><!-- /about-bottom -->
+  </div>
+
+
+  <div class="cta-card">
+    <div class="cta-icon">
+      <!-- Fluent: Mail icon -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.25 4h13.5A3.25 3.25 0 0 1 22 7.25v9.5A3.25 3.25 0 0 1 18.75 20H5.25A3.25 3.25 0 0 1 2 16.75v-9.5A3.25 3.25 0 0 1 5.25 4zm0 1.5A1.75 1.75 0 0 0 3.5 7.25v.4l8.5 5.53 8.5-5.53v-.4A1.75 1.75 0 0 0 18.75 5.5H5.25zM20.5 9.46l-7.96 5.18a1 1 0 0 1-1.08 0L3.5 9.46v7.29c0 .966.784 1.75 1.75 1.75h13.5a1.75 1.75 0 0 0 1.75-1.75V9.46z" fill="currentColor"/>
+      </svg>
+    </div>
+    <div>
+      <h3>Questions or feedback?</h3>
+      <p>Reach out to <strong>Julie Torpegaard</strong> at <a href="mailto:jto@contextand.com">jto@contextand.com</a> for questions about the skill, help implementing the outputs in your projects, or feedback on how it could work better for your specific purpose.</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════
+       EXAMPLE 1
+  ════════════════════════════ -->
+  <div class="eyebrow">Examples</div>
+
+  <div class="example-header">
+    <div class="example-num">1</div>
+    <div class="example-title">Configuration guide for Custom Columns</div>
+  </div>
+
+  <div class="example-columns">
+  <div class="prompt-block">
+    <div class="output-header">Prompt</div>
+    <div class="prompt-body">
+    <div class="prompt-block-text">"I uploaded a screenshot of the configuration module for enabling custom columns in our solution (custom columns set by admin in Power Apps). Help me improve the visual design and write a text to guide the user in how to use this configuration option."</div>
+    <!-- Place the Configuration screenshot at screenshots/config-modal.png to display it here -->
+    <figure class="screenshot-frame">
+      <img src="screenshots/config-modal.png" alt="Configuration module screenshot"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="screenshot-placeholder" style="display:none">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M3 6.25A3.25 3.25 0 0 1 6.25 3h11.5A3.25 3.25 0 0 1 21 6.25v11.5A3.25 3.25 0 0 1 17.75 21H6.25A3.25 3.25 0 0 1 3 17.75V6.25zm1.5 9.878V17.75c0 .966.784 1.75 1.75 1.75h11.5a1.75 1.75 0 0 0 1.75-1.75v-1.28l-3.864-3.402-3.093 2.798a.75.75 0 0 1-.974.029L8.93 13.18l-4.43 2.948zm15-1.83V6.25a1.75 1.75 0 0 0-1.75-1.75H6.25A1.75 1.75 0 0 0 4.5 6.25v7.808l3.955-2.633a.75.75 0 0 1 .894.073l2.773 2.463 3.114-2.817a.75.75 0 0 1 1.004-.012L19.5 14.298zM9.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" fill="currentColor" opacity=".3"/></svg>
+        <span>Configuration module screenshot</span>
+        <span>Save image as <code>screenshots/config-modal.png</code></span>
+      </div>
+    </figure>
+  </div>
+  </div>
+
+  <div class="output-block">
+    <div class="output-header">Skill output: UX Copywriting</div>
+    <div class="output-body">
+
+      <div class="strategy-box">
+        <div class="strategy-title">UX Strategy for Configuration Help Text</div>
+        <dl class="strategy-dl">
+          <div class="strategy-row"><dt>User</dt><dd>Consultant or admin configurator — infrequent use, high consequence. This person is configuring how data appears in the Timeline for all end users. A misconfiguration is disruptive to correct after deployment.</dd></div>
+          <div class="strategy-row"><dt>Core insight</dt><dd>The user needs to understand what each setting does <em>before</em> changing it, not discover the effect by trial and error in production.</dd></div>
+          <div class="strategy-row"><dt>Copy rule</dt><dd>Lead with what the setting controls. State the consequence of saving inline — especially that changes apply to all users immediately. Don't hide this in a tooltip.</dd></div>
+        </dl>
+      </div>
+
+      <div class="copy-prose">
+        <h4>Columns/Fields</h4>
+        <p>This tab controls which columns appear in the <strong>Timeline grid</strong> and in the <strong>task lightbox</strong> — the detail panel that opens when a user clicks a task. Changes apply to all users as soon as you save.</p>
+
+        <h4>Standard columns</h4>
+        <p>Built-in columns cannot be deleted. You can change their display order and whether they appear in the grid, in the lightbox, or both. Click the edit icon to adjust a column's settings.</p>
+
+        <h4>Custom columns</h4>
+        <p>These are fields your organization has added. You can edit, reorder, or delete them. <strong>Deleting a custom column removes it from the Timeline view, but does not delete the underlying data.</strong></p>
+
+        <h4>To add a new custom column</h4>
+        <ol>
+          <li>Click <strong>New Custom Column</strong>.</li>
+          <li>Choose the field type and select the source column from your Dataverse table.</li>
+          <li>Set whether it should appear <strong>In grid</strong> (always visible in the task row), <strong>In lightbox</strong> (visible when a task is opened), or both.</li>
+          <li>Use the <strong>Column</strong> and <strong>Row</strong> values to control its position in multi-column lightbox layouts.</li>
+          <li>Set an <strong>Order</strong> value to control its position in the grid — lower numbers appear first, left to right.</li>
+          <li>Click <strong>Save</strong>. Your changes take effect immediately for all users.</li>
+        </ol>
+
+        <div class="note-box">
+          <!-- Fluent: Warning icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#B95000">
+            <path d="M10.91 3.93a1.25 1.25 0 0 1 2.18 0l8.25 14.5A1.25 1.25 0 0 1 20.25 20.5H3.75a1.25 1.25 0 0 1-1.09-1.87l8.25-14.5zM12 8.75a.75.75 0 0 0-.75.75v4a.75.75 0 0 0 1.5 0v-4a.75.75 0 0 0-.75-.75zm.75 7.5a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0z" fill="currentColor"/>
+          </svg>
+          <span><strong>Note:</strong> There is no preview mode. Test all configuration changes in a non-production environment before applying them to a live deployment.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Mockup: Configuration modal -->
+  <div class="mockup-outer">
+    <div class="output-header">UI Mockup: Configuration modal</div>
+    <div class="mockup-body">
+    <div class="f-modal">
+      <div class="f-modal-titlebar">
+        <div class="f-modal-title">Configuration</div>
+      </div>
+      <div class="f-tabs">
+        <div class="f-tab">General Config</div>
+        <div class="f-tab">Features</div>
+        <div class="f-tab">Preview Features</div>
+        <div class="f-tab">Table Config</div>
+        <div class="f-tab active">Columns/Fields</div>
+      </div>
+      <div class="f-modal-body">
+
+        <div class="f-info-banner">
+          <!-- Fluent: Info circle icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2a10 10 0 1 1 0 20A10 10 0 0 1 12 2zm0 1.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17zm0 6.25a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0v-5.5a.75.75 0 0 1 .75-.75zm0-3.25a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor"/>
+          </svg>
+          <div>
+            Controls which columns appear in the <strong>Timeline grid</strong> and <strong>task lightbox</strong>.
+            Changes apply to all users immediately after saving. Test in a non-production environment before deploying to a live installation.
+          </div>
+        </div>
+
+        <div class="f-btn-primary">
+          <!-- Fluent: Add icon -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11.75 3a.75.75 0 0 1 .75.75v7.25h7.25a.75.75 0 0 1 0 1.5H12.5v7.25a.75.75 0 0 1-1.5 0V12.5H3.75a.75.75 0 0 1 0-1.5H11V3.75A.75.75 0 0 1 11.75 3z" fill="white"/></svg>
+          New Custom Column
+        </div>
+
+        <table class="f-table">
+          <thead>
+            <tr>
+              <th>Display name</th>
+              <th>Type</th>
+              <th>Order</th>
+              <th>In grid</th>
+              <th>In lightbox</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Task</td><td>TextField</td><td>10</td>
+              <td><span class="f-badge yes">yes</span></td>
+              <td><span class="f-badge yes">yes</span></td>
+              <td><span class="f-icon-action">
+                <!-- Fluent: Edit icon -->
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17.05 2.95a3.25 3.25 0 0 1 4.6 4.6l-1.03 1.03-4.6-4.6 1.03-1.03zm-2.1 2.1 4.6 4.6-10.2 10.2a2.25 2.25 0 0 1-.96.57l-4.02 1.15a.75.75 0 0 1-.93-.93l1.15-4.02c.1-.37.3-.7.57-.96L14.95 5.05z" fill="currentColor" opacity=".6"/></svg>
+              </span></td>
+            </tr>
+            <tr>
+              <td>Start date</td><td>Date</td><td>20</td>
+              <td><span class="f-badge yes">yes</span></td>
+              <td><span class="f-badge yes">yes</span></td>
+              <td><span class="f-icon-action"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17.05 2.95a3.25 3.25 0 0 1 4.6 4.6l-1.03 1.03-4.6-4.6 1.03-1.03zm-2.1 2.1 4.6 4.6-10.2 10.2a2.25 2.25 0 0 1-.96.57l-4.02 1.15a.75.75 0 0 1-.93-.93l1.15-4.02c.1-.37.3-.7.57-.96L14.95 5.05z" fill="currentColor" opacity=".6"/></svg></span></td>
+            </tr>
+            <tr>
+              <td>% Complete</td><td>Procent</td><td>50</td>
+              <td><span class="f-badge yes">yes</span></td>
+              <td><span class="f-badge no">no</span></td>
+              <td><span class="f-icon-action"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17.05 2.95a3.25 3.25 0 0 1 4.6 4.6l-1.03 1.03-4.6-4.6 1.03-1.03zm-2.1 2.1 4.6 4.6-10.2 10.2a2.25 2.25 0 0 1-.96.57l-4.02 1.15a.75.75 0 0 1-.93-.93l1.15-4.02c.1-.37.3-.7.57-.96L14.95 5.05z" fill="currentColor" opacity=".6"/></svg></span></td>
+            </tr>
+            <tr>
+              <td>WBS</td><td>WBS</td><td>60</td>
+              <td><span class="f-badge yes">yes</span></td>
+              <td><span class="f-badge no">no</span></td>
+              <td><span class="f-icon-action"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17.05 2.95a3.25 3.25 0 0 1 4.6 4.6l-1.03 1.03-4.6-4.6 1.03-1.03zm-2.1 2.1 4.6 4.6-10.2 10.2a2.25 2.25 0 0 1-.96.57l-4.02 1.15a.75.75 0 0 1-.93-.93l1.15-4.02c.1-.37.3-.7.57-.96L14.95 5.05z" fill="currentColor" opacity=".6"/></svg></span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="f-table-note">Standard columns cannot be deleted. Click the edit icon to change visibility and display order.</div>
+
+        <div class="f-section-label">Custom columns</div>
+        <table class="f-table">
+          <thead>
+            <tr>
+              <th>Display name</th>
+              <th>Type</th>
+              <th>Order</th>
+              <th>In grid</th>
+              <th>In lightbox</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Category</td><td>IconDropdown</td><td>–</td>
+              <td><span class="f-badge no">no</span></td>
+              <td><span class="f-badge yes">yes</span></td>
+              <td><span class="f-icon-action">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17.05 2.95a3.25 3.25 0 0 1 4.6 4.6l-1.03 1.03-4.6-4.6 1.03-1.03zm-2.1 2.1 4.6 4.6-10.2 10.2a2.25 2.25 0 0 1-.96.57l-4.02 1.15a.75.75 0 0 1-.93-.93l1.15-4.02c.1-.37.3-.7.57-.96L14.95 5.05z" fill="currentColor" opacity=".6"/></svg>
+                <!-- Fluent: Delete icon -->
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M10 2h4a1 1 0 0 1 1 1v1h4.25a.75.75 0 0 1 0 1.5H20v14A2.5 2.5 0 0 1 17.5 22h-11A2.5 2.5 0 0 1 4 19.5V5.5H4.75a.75.75 0 0 1 0-1.5H9V3a1 1 0 0 1 1-1zm-4.5 5v12.5a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V7H5.5zm4 2.75a.75.75 0 0 1 .75.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 .75-.75zm5 0a.75.75 0 0 1 .75.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 .75-.75z" fill="currentColor" opacity=".6"/></svg>
+              </span></td>
+            </tr>
+            <tr>
+              <td>Work</td><td>Decimal</td><td>65</td>
+              <td><span class="f-badge yes">yes</span></td>
+              <td><span class="f-badge no">no</span></td>
+              <td><span class="f-icon-action">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17.05 2.95a3.25 3.25 0 0 1 4.6 4.6l-1.03 1.03-4.6-4.6 1.03-1.03zm-2.1 2.1 4.6 4.6-10.2 10.2a2.25 2.25 0 0 1-.96.57l-4.02 1.15a.75.75 0 0 1-.93-.93l1.15-4.02c.1-.37.3-.7.57-.96L14.95 5.05z" fill="currentColor" opacity=".6"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M10 2h4a1 1 0 0 1 1 1v1h4.25a.75.75 0 0 1 0 1.5H20v14A2.5 2.5 0 0 1 17.5 22h-11A2.5 2.5 0 0 1 4 19.5V5.5H4.75a.75.75 0 0 1 0-1.5H9V3a1 1 0 0 1 1-1zm-4.5 5v12.5a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V7H5.5zm4 2.75a.75.75 0 0 1 .75.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 .75-.75zm5 0a.75.75 0 0 1 .75.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 .75-.75z" fill="currentColor" opacity=".6"/></svg>
+              </span></td>
+            </tr>
+            <tr>
+              <td>Actual work</td><td>Decimal</td><td>–</td>
+              <td><span class="f-badge no">no</span></td>
+              <td><span class="f-badge yes">yes</span></td>
+              <td><span class="f-icon-action">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17.05 2.95a3.25 3.25 0 0 1 4.6 4.6l-1.03 1.03-4.6-4.6 1.03-1.03zm-2.1 2.1 4.6 4.6-10.2 10.2a2.25 2.25 0 0 1-.96.57l-4.02 1.15a.75.75 0 0 1-.93-.93l1.15-4.02c.1-.37.3-.7.57-.96L14.95 5.05z" fill="currentColor" opacity=".6"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M10 2h4a1 1 0 0 1 1 1v1h4.25a.75.75 0 0 1 0 1.5H20v14A2.5 2.5 0 0 1 17.5 22h-11A2.5 2.5 0 0 1 4 19.5V5.5H4.75a.75.75 0 0 1 0-1.5H9V3a1 1 0 0 1 1-1zm-4.5 5v12.5a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V7H5.5zm4 2.75a.75.75 0 0 1 .75.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 .75-.75zm5 0a.75.75 0 0 1 .75.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 .75-.75z" fill="currentColor" opacity=".6"/></svg>
+              </span></td>
+            </tr>
+            <tr>
+              <td>Resource(s)</td><td>Assignments</td><td>15</td>
+              <td><span class="f-badge yes">yes</span></td>
+              <td><span class="f-badge yes">yes</span></td>
+              <td><span class="f-icon-action">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17.05 2.95a3.25 3.25 0 0 1 4.6 4.6l-1.03 1.03-4.6-4.6 1.03-1.03zm-2.1 2.1 4.6 4.6-10.2 10.2a2.25 2.25 0 0 1-.96.57l-4.02 1.15a.75.75 0 0 1-.93-.93l1.15-4.02c.1-.37.3-.7.57-.96L14.95 5.05z" fill="currentColor" opacity=".6"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M10 2h4a1 1 0 0 1 1 1v1h4.25a.75.75 0 0 1 0 1.5H20v14A2.5 2.5 0 0 1 17.5 22h-11A2.5 2.5 0 0 1 4 19.5V5.5H4.75a.75.75 0 0 1 0-1.5H9V3a1 1 0 0 1 1-1zm-4.5 5v12.5a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V7H5.5zm4 2.75a.75.75 0 0 1 .75.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 .75-.75zm5 0a.75.75 0 0 1 .75.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 .75-.75z" fill="currentColor" opacity=".6"/></svg>
+              </span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="f-table-note">Deleting a custom column removes it from the Timeline view, but does not delete the underlying data.</div>
+
+      </div>
+      <div class="f-modal-footer">
+        <button class="f-btn secondary">Close</button>
+        <button class="f-btn primary">Save</button>
+      </div>
+    </div>
+  </div><!-- /mockup-body -->
+  </div><!-- /mockup-outer -->
+  </div><!-- /example-columns -->
+
+
+  <hr class="section-divider">
+
+
+  <!-- ════════════════════════════
+       EXAMPLE 2
+  ════════════════════════════ -->
+
+  <div class="example-header">
+    <div class="example-num">2</div>
+    <div class="example-title">Error message for misconfigured custom column</div>
+  </div>
+
+  <div class="example-columns">
+  <div class="prompt-block">
+    <div class="output-header">Prompt</div>
+    <div class="prompt-body">
+    <div class="prompt-block-text">"Write the error message that the end user will see when a custom column for a table is not correctly configured."</div>
+  </div>
+  </div>
+
+  <div class="output-block">
+    <div class="output-header">Skill output: UX Copywriting</div>
+    <div class="output-body">
+
+      <div class="strategy-box">
+        <div class="strategy-title">Copywriting approach for error message</div>
+        <dl class="strategy-dl">
+          <div class="strategy-row"><dt>Audience</dt><dd>End user (project manager or team member) — not the admin who misconfigured the column. They did not cause this and cannot fix it themselves.</dd></div>
+          <div class="strategy-row"><dt>Rule</dt><dd>Answer three questions: what happened, why, and what to do next. Never blame the user. Never expose system internals. Confirm the rest of the view is unaffected — this prevents the user from doubting all their data.</dd></div>
+        </dl>
+      </div>
+
+      <div class="copy-prose">
+        <h4>Recommended message: when the column name is known</h4>
+        <div class="quote-box">
+          <strong>"[Column name]" can't be displayed</strong><br><br>
+          This column is missing required configuration and has been hidden from your view. The rest of your data is unaffected.<br><br>
+          Contact your system administrator to complete the setup in Configuration &gt; Columns/Fields.
+        </div>
+
+        <h4>Variant: when multiple columns are affected or the column name is unavailable</h4>
+        <div class="quote-box">
+          <strong>One or more columns can't be displayed</strong><br><br>
+          Some columns are missing required configuration and have been hidden. The rest of your view is unaffected.<br><br>
+          Ask your system administrator to review Configuration &gt; Columns/Fields.
+        </div>
+
+        <h4>Rationale</h4>
+        <p><strong>Title:</strong> Names the specific column so the user knows exactly what's missing — not a vague "something went wrong." Uses plain language, not a technical error code.</p>
+        <p><strong>"Missing required configuration":</strong> Explains the root cause without exposing field names, Dataverse schema, or developer terminology.</p>
+        <p><strong>"Contact your system administrator":</strong> Routes to the right person with a clear next step — not "try again" or "contact support."</p>
+        <p><strong>Path reference (Configuration &gt; Columns/Fields):</strong> Gives the admin an exact location so they can act without guessing.</p>
+        <p><strong>"The rest of your data is unaffected":</strong> Critical. Without this, the user may question the reliability of all data on screen — this one sentence prevents unnecessary escalation and maintains trust.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Mockup: Error in Timeline context -->
+  <div class="mockup-outer">
+    <div class="output-header">UI Mockup: Timeline error</div>
+    <div class="mockup-body">
+    <div class="f-chrome">
+      <div class="f-chrome-bar">
+        <!-- Fluent: Table icon -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--neutral-50)"><path d="M3 6.25A3.25 3.25 0 0 1 6.25 3h11.5A3.25 3.25 0 0 1 21 6.25v11.5A3.25 3.25 0 0 1 17.75 21H6.25A3.25 3.25 0 0 1 3 17.75V6.25zm8.5 6.25H4.5v5.25c0 .966.784 1.75 1.75 1.75H11.5v-7zm1.5 0v7h5.25a1.75 1.75 0 0 0 1.75-1.75V12.5H13zm6.5-1.5V6.25a1.75 1.75 0 0 0-1.75-1.75H13V11h6.5zm-8-4.5V11H4.5V6.25c0-.966.784-1.75 1.75-1.75H11.5z" fill="currentColor"/></svg>
+        Timeline — AI Sentinel · Phase 2
+      </div>
+      <div class="f-chrome-body">
+
+        <div class="f-error-bar">
+          <!-- Fluent: Warning icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M10.91 3.93a1.25 1.25 0 0 1 2.18 0l8.25 14.5A1.25 1.25 0 0 1 20.25 20.5H3.75a1.25 1.25 0 0 1-1.09-1.87l8.25-14.5zM12 8.75a.75.75 0 0 0-.75.75v4a.75.75 0 0 0 1.5 0v-4A.75.75 0 0 0 12 8.75zm.75 7.5a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0z" fill="currentColor" color="#C50F1F"/>
+          </svg>
+          <div style="flex:1;">
+            <div class="f-error-title">"Category" can't be displayed</div>
+            <div class="f-error-body">This column is missing required configuration and has been hidden from your view. The rest of your data is unaffected.</div>
+            <a class="f-error-cta" href="#">Contact your system administrator to complete the setup in Configuration &gt; Columns/Fields</a>
+          </div>
+          <span class="f-error-dismiss">
+            <!-- Fluent: Dismiss icon -->
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4.21 4.387a.75.75 0 0 1 .977-.073l.084.073L12 11.189l6.728-6.802a.75.75 0 0 1 1.138.977l-.073.084L13.061 12l6.732 6.728a.75.75 0 0 1-.977 1.138l-.084-.073L12 13.061l-6.732 6.732a.75.75 0 0 1-1.138-.977l.073-.084L10.939 12 4.21 5.268a.75.75 0 0 1 0-1.061l.001-.001z" fill="currentColor" color="#8A8A8A"/></svg>
+          </span>
+        </div>
+
+        <!-- Timeline grid -->
+        <div class="timeline-header-row">
+          <div>Task</div>
+          <div>Start date</div>
+          <div>End date</div>
+          <div>Work</div>
+          <div>Timeline →</div>
+        </div>
+        <div class="timeline-row">
+          <div>1.1 Requirements gathering</div>
+          <div style="color:var(--neutral-60);">1/6/2026</div>
+          <div style="color:var(--neutral-60);">1/30/2026</div>
+          <div style="color:var(--neutral-60);">80</div>
+          <div><div class="tl-bar" style="width:55%;"></div></div>
+        </div>
+        <div class="timeline-row">
+          <div>1.2 Technical design</div>
+          <div style="color:var(--neutral-60);">2/2/2026</div>
+          <div style="color:var(--neutral-60);">2/27/2026</div>
+          <div style="color:var(--neutral-60);">120</div>
+          <div><div class="tl-bar" style="width:40%;margin-left:20%;"></div></div>
+        </div>
+        <div class="timeline-row">
+          <div>1.3 Development sprint 1</div>
+          <div style="color:var(--neutral-60);">3/2/2026</div>
+          <div style="color:var(--neutral-60);">3/27/2026</div>
+          <div style="color:var(--neutral-60);">200</div>
+          <div><div class="tl-bar" style="width:35%;margin-left:38%;"></div></div>
+        </div>
+
+        <div class="f-chrome-note">"Category" column is hidden due to a configuration issue. All other task data is displayed normally.</div>
+      </div>
+    </div>
+  </div><!-- /mockup-body -->
+  </div><!-- /mockup-outer -->
+  </div><!-- /example-columns -->
+
+
+  <hr class="section-divider">
+
+
+  <!-- ════════════════════════════
+       EXAMPLE 3
+  ════════════════════════════ -->
+
+  <div class="example-header">
+    <div class="example-num">3</div>
+    <div class="example-title">Program Dashboard UX Audit</div>
+  </div>
+
+  <div class="example-columns">
+  <div class="prompt-block">
+    <div class="output-header">Prompt</div>
+    <div class="prompt-body">
+    <div class="prompt-block-text">"Review this dashboard for a Program Manager in a large corporation. How could the UX of this be improved to better support their everyday task flow?"</div>
+    <!-- Place the Program Dashboard screenshot at screenshots/dashboard.png to display it here -->
+    <figure class="screenshot-frame">
+      <img src="screenshots/dashboard.png" alt="Program Dashboard screenshot"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="screenshot-placeholder" style="display:none">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M3 6.25A3.25 3.25 0 0 1 6.25 3h11.5A3.25 3.25 0 0 1 21 6.25v11.5A3.25 3.25 0 0 1 17.75 21H6.25A3.25 3.25 0 0 1 3 17.75V6.25zm1.5 9.878V17.75c0 .966.784 1.75 1.75 1.75h11.5a1.75 1.75 0 0 0 1.75-1.75v-1.28l-3.864-3.402-3.093 2.798a.75.75 0 0 1-.974.029L8.93 13.18l-4.43 2.948zm15-1.83V6.25a1.75 1.75 0 0 0-1.75-1.75H6.25A1.75 1.75 0 0 0 4.5 6.25v7.808l3.955-2.633a.75.75 0 0 1 .894.073l2.773 2.463 3.114-2.817a.75.75 0 0 1 1.004-.012L19.5 14.298zM9.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" fill="currentColor" opacity=".3"/></svg>
+        <span>Program Dashboard screenshot</span>
+        <span>Save image as <code>screenshots/dashboard.png</code></span>
+      </div>
+    </figure>
+  </div>
+  </div>
+
+  <div class="output-block output-block--wide">
+    <div class="output-header">Skill output: UX Audit</div>
+    <div class="output-body">
+
+      <div class="strategy-box">
+        <div class="strategy-title">UX Strategy for New Program Dashboard</div>
+        <dl class="strategy-dl">
+          <div class="strategy-row"><dt>User</dt><dd>Program Manager in a large organization — daily user tracking initiative health, budget vs. actuals, and resource workload across a complex program with multiple concurrent workstreams. Decisions made from this screen have downstream consequences for delivery and resourcing.</dd></div>
+          <div class="strategy-row"><dt>Core insight</dt><dd>A Program Manager scanning this dashboard needs to immediately know <em>what needs my attention today</em> — not reconstruct a view of program health by interpreting five separate charts.</dd></div>
+          <div class="strategy-row"><dt>Platform</dt><dd>Power Apps canvas embedded in xPM model-driven app. Fixed viewport; no hover states on touch. All affordances must be visible, not discoverable.</dd></div>
+          <div class="strategy-row"><dt>Biggest risk</dt><dd>A PM misses a flagged initiative or overdue action because the dashboard presents every data point at equal visual weight. The anomaly needs to stand out — it doesn't.</dd></div>
+        </dl>
+      </div>
+
+      <div class="finding-group">
+        <div class="finding-badge critical">Critical</div>
+        <ul class="finding-list">
+          <li class="finding-item">
+            <span class="h-tag-wrap"><span class="h-tag">H2: Match between system and real world</span></span>
+            All three top chart panels share the title "Active Initiatives." The actual topic — Health, Stage/Status, Budget vs. Actuals — appears only in the smaller subtitle. A PM scanning quickly cannot build a mental map of what each panel shows. <span class="fix-label">Fix:</span> Promote the descriptive subtitle to the primary heading. "Active Initiatives" adds no information at the panel level.
+          </li>
+          <li class="finding-item">
+            <span class="h-tag-wrap"><span class="h-tag">H1: Visibility of system status</span></span>
+            No "what needs my attention" signal anywhere on the dashboard. The PM must read and interpret all five charts to form any view of program health — at-risk initiatives carry no more visual weight than healthy ones. <span class="fix-label">Fix:</span> Add a summary status row above the charts: flagged initiatives, overdue gate actions, and budget variance at a glance. This is the signal a PM acts on daily.
+          </li>
+          <li class="finding-item">
+            <span class="h-tag-wrap"><span class="h-tag">H1: Visibility of system status</span></span>
+            Every chart shows current state only — no trends. "At risk: 1" means nothing without knowing whether that number is new, recurring, or improving. Budget totals with no variance indicator are unactionable. <span class="fix-label">Fix:</span> Add trend indicators (↑↓ with a period label, or sparklines) to all KPI-type counts and financial totals.
+          </li>
+        </ul>
+      </div>
+
+      <div class="finding-group">
+        <div class="finding-badge workflow">Workflow efficiency</div>
+        <ul class="finding-list">
+          <li class="finding-item">
+            The Dashboard tab is positioned <em>last</em> in an 11-tab row — the highest-value view for a daily program review is the hardest to reach. A PM opening a program must scan the full tab bar every time. <span class="fix-label">Fix:</span> Move Dashboard to position 2, or make it the default landing tab when opening a program record.
+          </li>
+          <li class="finding-item">
+            Work by Resource shows "(blank)" as a resource name — a system artifact representing unassigned work. A PM cannot act on this without knowing what it means. <span class="fix-label">Fix:</span> Label as "Unassigned" and visually distinguish it from named resources so it reads as a prompt to assign, not a data error.
+          </li>
+          <li class="finding-item">
+            "5% Complete" in the top header bar is a raw number with no context — on track for this program's current stage, or behind? <span class="fix-label">Fix:</span> Show expected alongside actual (e.g., "5% of 12% expected"), or render as a progress bar with a pace indicator.
+          </li>
+          <li class="finding-item">
+            The Budget vs. Actuals chart legend uses "Gate" and "3. Execute" — internal stage names that are not readable as budget concepts at a glance. <span class="fix-label">Fix:</span> Use plain language: "Approved budget" and "Actuals to date."
+          </li>
+        </ul>
+      </div>
+
+      <div class="finding-group">
+        <div class="finding-badge important">Important</div>
+        <ul class="finding-list">
+          <li class="finding-item">
+            <span class="h-tag-wrap"><span class="h-tag">H7: Flexibility and efficiency of use</span></span>
+            With 11 tabs, the navigation bar is at capacity. Power users learn the layout; new staff and occasional users scan all tabs every visit. <span class="fix-label">Fix:</span> Review whether all 11 tabs need to be permanently visible — consider grouping low-frequency tabs (Dependencies, Stakeholders) or placing them behind a "More" control.
+          </li>
+          <li class="finding-item">
+            <span class="h-tag-wrap"><span class="h-tag">H6: Recognition over recall</span></span>
+            No "last updated" timestamp on any chart panel. For a dashboard that drives daily decisions, stale data can look current. <span class="fix-label">Fix:</span> Add a discreet "Refreshed [time]" label to each chart panel, or a single timestamp for the full dashboard.
+          </li>
+        </ul>
+      </div>
+
+      <div class="finding-group">
+        <div class="finding-badge polish">Polish</div>
+        <ul class="finding-list">
+          <li class="finding-item">The three icons (refresh, export, expand) on each chart panel are unlabeled. Their function is undiscoverable without clicking. <span class="fix-label">Fix:</span> Add tooltips, or show icon labels on the header row of each panel.</li>
+          <li class="finding-item">The bottom half of the viewport is empty. <span class="fix-label">Fix:</span> Add a sixth panel — a risk or action items list — or allow the PM to configure which panels are shown.</li>
+        </ul>
+      </div>
+
+      <div class="finding-group">
+        <div class="finding-badge positive">What's working well</div>
+        <ul class="finding-list">
+          <li class="finding-item">The chart selection is well-matched to the persona. Health status, stage distribution, budget vs. actuals, and work distribution are all genuine daily signals for a Program Manager — the right data is present, it just needs better prioritization.</li>
+          <li class="finding-item"><span class="h-tag-wrap"><span class="h-tag">H6: Recognition over recall</span></span>The top header bar (Modified By, Modified On, # of Initiatives) provides clear data provenance. The PM knows immediately how recent the record is.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  </div><!-- /example-columns -->
+
+
+  <!-- ════════════════════════════
+       CTA
+  ════════════════════════════ -->
+
+</div><!-- /container -->
+</body>
+</html>
